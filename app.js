@@ -10,11 +10,14 @@ const cors = require('cors'); // Importez le module cors
 
 const app = express();
 
+const origins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [];
+
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://172.20.10.8:3000'], // Ajoutez votre domaine React ici
+    origin: origins.length > 0 ? origins : undefined,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
-  }));
+}));
+
   
 
 
